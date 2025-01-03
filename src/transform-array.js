@@ -14,58 +14,8 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function transform(arr) {
-  if (!Array.isArray(arr)) {
-    throw new Error("'arr' parameter must be an instance of the Array!");
-  }
-  const result = [];
-  let skipNext = false;
-
-  for (let i = 0; i < arr.length; i++) {
-    if (skipNext) {
-      skipNext = false;
-      continue;
-    }
-
-    switch (arr[i]) {
-      case '--double-next':
-        if (i + 1 < arr.length) {
-          result.push(arr[i + 1]);
-        }
-        break;
-
-      case '--double-prev':
-        if (
-          i - 1 >= 0 &&
-          arr[i - 1] !== undefined &&
-          arr[i - 1] !== '--discard-next'
-        ) {
-          result.push(arr[i - 1]);
-        }
-        break;
-
-      case '--discard-next':
-        if (i + 1 < arr.length) {
-          skipNext = true;
-        }
-        break;
-
-      case '--discard-prev':
-        if (result.length > 0 && arr[i - 1] !== '--discard-next') {
-          result.pop();
-        }
-        break;
-
-      default:
-        result.push(arr[i]);
-        break;
-    }
-  }
-
-  return result;
+  return arr;
 }
-console.log(
-  transform([1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5])
-);
 module.exports = {
   transform,
 };
