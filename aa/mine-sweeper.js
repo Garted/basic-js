@@ -61,7 +61,6 @@ function minesweeper(matrix) {
   }
   return finalField;
 }
-
 module.exports = {
   minesweeper,
 };

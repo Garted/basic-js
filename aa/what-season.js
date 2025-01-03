@@ -1,3 +1,4 @@
+const { prototype } = require('mocha');
 const { NotImplementedError } = require('../extensions/index.js');
 
 /**
@@ -35,7 +36,6 @@ function getSeason(date) {
     return 'winter';
   }
 }
-
 module.exports = {
   getSeason,
 };
